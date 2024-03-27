@@ -1,0 +1,33 @@
+﻿<Page x:Class="Shop.Administrator__manager__courirer__client_windows.Administrator.Pages.PageChange"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Shop.Administrator__manager__courirer__client_windows.Administrator.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageChange"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Grid Background="White" MaxWidth="1500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <materialDesign:Card>
+                <TabControl Width="auto" SelectionChanged="TabControl_SelectionChanged"  >
+                    <TabItem Header="Пользователи" x:Name="EditingUsers">
+                    </TabItem>
+                    <TabItem Header="Каталог товаров" x:Name="EditingTheStore">
+                    </TabItem>
+                    <TabItem Header="Другое" x:Name="EditingOther">
+                    </TabItem>
+                    <TabItem Header="Заказы" x:Name="Orders">
+                    </TabItem>
+                </TabControl>
+            </materialDesign:Card>
+        </Grid>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="PageFrame"></Frame>
+    </Grid>
+</Page>

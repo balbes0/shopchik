@@ -1,0 +1,56 @@
+﻿<Page x:Class="Shop.Pages_in_the_users_window.StorePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Shop.Pages_in_the_users_window"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StorePage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Grid>
+        <Grid x:Name="PageFrameGrid" Visibility="Collapsed">
+            <Frame x:Name="PageFrame"></Frame>
+        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center" x:Name="MainCatalog">
+            <ItemsControl x:Name="myGrid">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="200" MinWidth="200" Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50*" />
+                                <RowDefinition Height="16*" />
+                                <RowDefinition Height="10*" />
+                                <RowDefinition Height="15*" />
+                                <RowDefinition Height="10*" />
+                            </Grid.RowDefinitions>
+                            <Button x:Name="PageProductInfo" Background="#00000000" BorderBrush="#00000000" Grid.Row="0" Height="Auto" Width="Auto" RenderOptions.BitmapScalingMode="HighQuality" Click="PageProductInfo_Click">
+                                <Image Source="{Binding ImageSource}" Height="Auto" Width="Auto"/>
+                            </Button>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60*" />
+                                    <ColumnDefinition Width="40*" />
+                                </Grid.ColumnDefinitions>
+                                <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Background="#00000000" FontWeight="Bold" Content="{Binding Price}" />
+                                <Button x:Name="AddToFavoritesButton" Grid.Column="1" Background="#00000000" BorderBrush="#00000000" Width="Auto" Height="Auto" HorizontalAlignment="Right" Click="AddToFavoritesButton_Click">
+                                    <materialDesign:PackIcon Kind="Heart" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding ForegroundColor}"/>
+                                </Button>
+                            </Grid>
+                            <TextBlock x:Name="DescriptionTextBlock" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Description}" />
+                            <TextBlock Grid.Row="3" TextWrapping="Wrap" FontSize="10" Foreground="#7F7F7F" Text="{Binding Details}"/>
+                            <Button x:Name="AddToShoppingBasket" Grid.Row="4" Background="#00000000" BorderBrush="DarkGray" Margin="0, 20, 0, 0" Click="AddToShoppingBasket_Click">
+                                <materialDesign:PackIcon Kind="{Binding Kind}"/>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

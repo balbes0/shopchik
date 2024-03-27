@@ -1,0 +1,124 @@
+﻿<Page x:Class="Shop.Pages_in_the_users_window.AccountInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Shop.Pages_in_the_users_window"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AccountInfo"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Grid Background="White" MaxWidth="1500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <materialDesign:Card>
+                <TabControl Width="auto" SelectionChanged="TabControl_SelectionChanged"  >
+                    <TabItem Header="Главная" x:Name="Main"/>
+                    <TabItem Header="Безопасность" x:Name="Password">
+                    </TabItem>
+                    <TabItem Header="Заказы" x:Name="Orders">
+                    </TabItem>
+                    <TabItem Header="Выйти из аккаунта" x:Name="Exit">
+                    </TabItem>
+                </TabControl>
+            </materialDesign:Card>
+        </Grid>
+        <Grid x:Name="MainGrid" Grid.Row="1" MaxWidth="1000" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Margin="20, 0, 0, 0">Имя:</Label>
+                    <TextBox x:Name="UserName" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Margin="20, 0, 0, 0">Фамилия:</Label>
+                    <TextBox x:Name="UserSurname" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Margin="20, 0, 0, 0">Почта:</Label>
+                    <TextBox x:Name="UserEmail" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Margin="20, 0, 0, 0">Номер телефона:</Label>
+                    <TextBox x:Name="UserPhoneNumber" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Button x:Name="SaveChanges" Background="#016FFF" BorderBrush="#016FFF" VerticalAlignment="Center" HorizontalAlignment="Center" MinHeight="70" MinWidth="200" Click="SaveChanges_Click">Сохранить изменения</Button>
+            </Grid>
+        </Grid>
+        <Grid x:Name="ChangePassword" Grid.Row="1" MaxWidth="1000" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Старый пароль:</Label>
+                <PasswordBox x:Name="OldPassword" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Grid.Row="1" materialDesign:HintAssist.Hint="Старый пароль" VerticalContentAlignment="Center" Padding="10" HorizontalAlignment="Center" MinWidth="350" MaxHeight="60"></PasswordBox>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Новый пароль:</Label>
+                <PasswordBox x:Name="NewPassword" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Grid.Row="1" materialDesign:HintAssist.Hint="Новый пароль" VerticalContentAlignment="Center" Padding="10" HorizontalAlignment="Center" MinWidth="350" MaxHeight="60"></PasswordBox>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold">Подтвердите пароль:</Label>
+                <PasswordBox x:Name="ConfirmPassword" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" Grid.Row="1" materialDesign:HintAssist.Hint="Подтвердите пароль" VerticalContentAlignment="Center" Padding="10" HorizontalAlignment="Center" MinWidth="350" MaxHeight="60"></PasswordBox>
+            </Grid>
+            <Grid Grid.Row="3">
+                <Button x:Name="SaveNewPassword" Background="#016FFF" BorderBrush="#016FFF" VerticalAlignment="Center" HorizontalAlignment="Center" MinHeight="70" MinWidth="200" Click="SaveNewPassword_Click">Изменить пароль</Button>
+            </Grid>
+        </Grid>
+        <Grid x:Name="GridWithHistoryOrders" Grid.Row="1" Visibility="Collapsed">
+            <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" x:Name="DataGridHistoryOrders" Background="White" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 20, 0, 0"></DataGrid>
+        </Grid>
+    </Grid>
+</Page>
