@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -60,15 +61,25 @@ namespace Shop.Pages_in_the_users_window
             {
                 DataRowView selectedRow = (DataRowView)Roles_IDCMBX.SelectedItem;
                 int ID_Role = (int)selectedRow["ID_user_role"];
-                if (NewPasswordTBX.Password != "")
+                string patternforemail = @"^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$";
+                string email = UserEmailTBX.Text;
+                string phone = UserPhoneNumberTBX.Text;
+                string patternforphonenumber = @"^((\+7|7|8)+([0-9]){10})$";
+                bool isValidEmail = Regex.IsMatch(email, patternforemail, RegexOptions.IgnoreCase);
+                bool isValidPhoneNumber = Regex.IsMatch(phone, patternforphonenumber, RegexOptions.IgnoreCase);
+                if (NewPasswordTBX.Password != "" && NewPasswordTBX.Password.Length >= 8 && UserNameTBX.Text.Length > 2 && UserSurnameTBX.Text.Length > 2 && isValidEmail && isValidPhoneNumber)
                 {
                     string hashPassword = ComputeSHA256Hash(NewPasswordTBX.Password);
                     _usersTableAdapter.InsertQueryUsers(UserNameTBX.Text, UserSurnameTBX.Text, UserEmailTBX.Text, hashPassword, UserPhoneNumberTBX.Text, ID_Role);
                     DataGridUsersChange.ItemsSource = _usersViewTableAdapter.GetData();
                 }
-                else if (NewPasswordTBX.Password == "")
+                else if (NewPasswordTBX.Password == "" || NewPasswordTBX.Password.Length < 8)
                 {
-                    MessageBox.Show("Пароль не должен быть пустым");
+                    MessageBox.Show("Некорректный пароль");
+                }
+                else
+                {
+                    MessageBox.Show("Некорректно введены данные");
                 }
             }
         }
@@ -90,9 +101,12 @@ namespace Shop.Pages_in_the_users_window
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            object id = (DataGridUsersChange.SelectedItem as DataRowView).Row[0];
-            _usersTableAdapter.DeleteUserByID(Convert.ToInt32(id));
-            DataGridUsersChange.ItemsSource = _usersViewTableAdapter.GetData();
+            if (DataGridUsersChange.SelectedItem != "")
+            {
+                object id = (DataGridUsersChange.SelectedItem as DataRowView).Row[0];
+                _usersTableAdapter.DeleteUserByID(Convert.ToInt32(id));
+                DataGridUsersChange.ItemsSource = _usersViewTableAdapter.GetData();
+            }
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
@@ -109,6 +123,12 @@ namespace Shop.Pages_in_the_users_window
         {
             if (DataGridUsersChange.SelectedItem != null)
             {
+                string patternforemail = @"^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$";
+                string email = UserEmailTBX.Text;
+                string phone = UserPhoneNumberTBX.Text;
+                string patternforphonenumber = @"^((\+7|7|8)+([0-9]){10})$";
+                bool isValidEmail = Regex.IsMatch(email, patternforemail, RegexOptions.IgnoreCase);
+                bool isValidPhoneNumber = Regex.IsMatch(phone, patternforphonenumber, RegexOptions.IgnoreCase);
                 object ID_User = (DataGridUsersChange.SelectedItem as DataRowView).Row[0];
                 bool flag = true;
                 var allUsers = _usersTableAdapter.GetData().Rows;
@@ -123,14 +143,18 @@ namespace Shop.Pages_in_the_users_window
                 }
                 if (flag)
                 {
-                    if (NewPasswordTBX.Password != "")
+                    if (isValidEmail && isValidPhoneNumber && Roles_IDCMBX.SelectedItem != "")
                     {
-                        string hashPassword = ComputeSHA256Hash(NewPasswordTBX.Password);
-                        _usersTableAdapter.UpdateQueryChangePassword(hashPassword, Convert.ToInt32(ID_User));
+                        if (NewPasswordTBX.Password != "")
+                        {
+                            string hashPassword = ComputeSHA256Hash(NewPasswordTBX.Password);
+                            _usersTableAdapter.UpdateQueryChangePassword(hashPassword, Convert.ToInt32(ID_User));
+                        }
+                        _usersTableAdapter.UpdateQueryUserInfo(UserNameTBX.Text, UserSurnameTBX.Text, UserEmailTBX.Text, UserPhoneNumberTBX.Text, Convert.ToInt32(ID_User));
+                        MessageBox.Show("Данные пользователя были успешно изменены");
+                        DataGridUsersChange.ItemsSource = _usersViewTableAdapter.GetData();
                     }
-                    _usersTableAdapter.UpdateQueryUserInfo(UserNameTBX.Text, UserSurnameTBX.Text, UserEmailTBX.Text, UserPhoneNumberTBX.Text, Convert.ToInt32(ID_User));
-                    MessageBox.Show("Данные пользователя были успешно изменены");
-                    DataGridUsersChange.ItemsSource = _usersViewTableAdapter.GetData();
+                    MessageBox.Show("Некорректно введен номер или почта");
                 }
                 ClearButton_Click(sender, e);
             }
@@ -145,6 +169,21 @@ namespace Shop.Pages_in_the_users_window
                 _usersTableAdapter.InsertQueryUsers(item.User_name, item.User_surname, item.User_email, hashpassword, item.User_phone, item.User_role);
             }
             DataGridUsersChange.ItemsSource = _usersViewTableAdapter.GetData();
+        }
+
+        private void UserNameTBX_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsLetter(e.Text, 0)) e.Handled = true;
+        }
+
+        private void UserSurnameTBX_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsLetter(e.Text, 0)) e.Handled = true;
+        }
+
+        private void UserPhoneNumberTBX_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
         }
     }
 }

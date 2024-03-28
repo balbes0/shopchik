@@ -56,7 +56,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -87,9 +87,6 @@
     </Compile>
     <Compile Include="Administrator, manager, courirer, client windows\Administrator\Pages\PageChange.xaml.cs">
       <DependentUpon>PageChange.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Administrator, manager, courirer, client windows\Courier\CourierWindow.xaml.cs">
-      <DependentUpon>CourierWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Authorization, registration, recovery pages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
@@ -140,10 +137,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Administrator, manager, courirer, client windows\Administrator\Pages\PageChange.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Administrator, manager, courirer, client windows\Courier\CourierWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -259,9 +252,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Administrator, manager, courirer, client windows\Courier\Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="b9f813c6-a227-45c1-a58f-9d5508d6c7a8.ico.jpg" />
   </ItemGroup>

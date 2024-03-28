@@ -45,7 +45,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Margin="20, 0, 0, 0">Имя:</Label>
-                    <TextBox x:Name="UserName" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                    <TextBox x:Name="UserName" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top" PreviewTextInput="UserName_PreviewTextInput"></TextBox>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -53,7 +53,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Margin="20, 0, 0, 0">Фамилия:</Label>
-                    <TextBox x:Name="UserSurname" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                    <TextBox x:Name="UserSurname" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top" PreviewTextInput="UserSurname_PreviewTextInput"></TextBox>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">
@@ -75,14 +75,14 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Label FontSize="20" FontWeight="Bold" VerticalContentAlignment="Center" Margin="20, 0, 0, 0">Номер телефона:</Label>
-                    <TextBox x:Name="UserPhoneNumber" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top"></TextBox>
+                    <TextBox x:Name="UserPhoneNumber" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Row="1" Margin="20, 0, 20, 0" FontSize="12.5" MaxHeight="60" VerticalContentAlignment="Center" VerticalAlignment="Top" PreviewTextInput="UserPhoneNumber_PreviewTextInput"></TextBox>
                 </Grid>
             </Grid>
             <Grid Grid.Row="3">
                 <Button x:Name="SaveChanges" Background="#016FFF" BorderBrush="#016FFF" VerticalAlignment="Center" HorizontalAlignment="Center" MinHeight="70" MinWidth="200" Click="SaveChanges_Click">Сохранить изменения</Button>
             </Grid>
         </Grid>
-        <Grid x:Name="ChangePassword" Grid.Row="1" MaxWidth="1000" Visibility="Collapsed">
+        <Grid x:Name="ChangePassword" Grid.Row="1" MaxWidth="1000" Visibility="Visible">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>

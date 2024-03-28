@@ -41,15 +41,15 @@
             </Grid.ColumnDefinitions>
             <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" x:Name="AddressDelivery" Grid.Column="1" Grid.ColumnSpan="2" MaxHeight="70" Margin="10" materialDesign:HintAssist.Hint="Адрес доставки" VerticalContentAlignment="Top" Padding="20"></TextBox>
         </Grid>
-        <Grid Grid.Row="3" x:Name="BankCard" Visibility="Collapsed">
+        <Grid Grid.Row="3" x:Name="BankCard" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Column="1" MaxHeight="70" Margin="10" materialDesign:HintAssist.Hint="Номер карты" VerticalContentAlignment="Top" Padding="20"></TextBox>
-            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Column="2" MaxHeight="70" Margin="10" materialDesign:HintAssist.Hint="CVV" VerticalContentAlignment="Top" Padding="20"></TextBox>
+            <TextBox x:Name="CardNumber" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Column="1" MaxHeight="70" Margin="10" materialDesign:HintAssist.Hint="Номер карты" VerticalContentAlignment="Top" Padding="20" PreviewTextInput="CardNumber_PreviewTextInput"></TextBox>
+            <TextBox x:Name="CVV" Style="{StaticResource MaterialDesignOutlinedTextBox}" Grid.Column="2" MaxHeight="70" Margin="10" materialDesign:HintAssist.Hint="CVV" VerticalContentAlignment="Top" Padding="20" PreviewTextInput="CVV_PreviewTextInput"></TextBox>
         </Grid>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>

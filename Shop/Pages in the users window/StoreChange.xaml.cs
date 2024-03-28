@@ -96,7 +96,7 @@ namespace Shop.Pages_in_the_users_window
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DataGridInStoreChangePage.SelectedItem != null)
+            if (DataGridInStoreChangePage.SelectedItem != null && Product_nameTBX.Text != "")
             {
                 object ID_Product = (DataGridInStoreChangePage.SelectedItem as DataRowView).Row[0];
                 DataRowView selectedRow = (DataRowView)Brand_IDCMBX.SelectedItem;
@@ -116,6 +116,16 @@ namespace Shop.Pages_in_the_users_window
                 _productsTableAdapter.InsertQueryProducts(item.Product_name, item.Product_description, item.Product_characteristics, item.Brand_ID, item.Path_to_image, item.Product_price, item.Category_ID, item.Product_in_stock);
             }
             DataGridInStoreChangePage.ItemsSource = _productsViewTableAdapter.GetData();
+        }
+
+        private void Product_priceTBX_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
+        }
+
+        private void Products_in_stockTBX_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0)) e.Handled = true;
         }
     }
 }

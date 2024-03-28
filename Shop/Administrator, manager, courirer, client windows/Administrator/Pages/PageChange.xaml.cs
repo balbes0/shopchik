@@ -45,7 +45,7 @@ namespace Shop.Administrator__manager__courirer__client_windows.Administrator.Pa
             }
             else if(Orders.IsSelected)
             {
-                PageFrame.Content = new Pages_in_the_users_window.Orders();
+                PageFrame.Content = new Pages_in_the_users_window.Orders(ID_Role_pc);
             }
         }
     }

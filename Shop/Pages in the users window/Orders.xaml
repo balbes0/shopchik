@@ -29,7 +29,7 @@
                 </TabItem>
             </TabControl>
         </materialDesign:Card>
-        <DataGrid Grid.Row="1" Background="#00000000" Foreground="Black" x:Name="DataGridInOrders" HorizontalAlignment="Center" CanUserAddRows="False" CanUserDeleteRows="False"></DataGrid>
+        <DataGrid Grid.Row="1" Background="#00000000" Foreground="Black" x:Name="DataGridInOrders" HorizontalAlignment="Center" CanUserAddRows="False" CanUserDeleteRows="False" SelectionChanged="DataGridInOrders_SelectionChanged"></DataGrid>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -42,7 +42,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox materialDesign:HintAssist.Hint="ID заказа" Grid.Column="3" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <TextBox x:Name="IDOrderRO" materialDesign:HintAssist.Hint="ID заказа" Grid.Column="3" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
             </Grid>
             <Grid Grid.Row="0" Visibility="Collapsed" x:Name="GridForDeliveredOrders">
                 <Grid.ColumnDefinitions>
@@ -51,9 +51,18 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox materialDesign:HintAssist.Hint="ID пользователя" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
-                <TextBox materialDesign:HintAssist.Hint="Кол-во заказанного товара" Grid.Column="2" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
-                <ComboBox x:Name="ProductsCMBX" VerticalAlignment="Bottom" materialDesign:HintAssist.Hint="Товар" Grid.Column="3" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></ComboBox>
+                <TextBox x:Name="IDUserDO" materialDesign:HintAssist.Hint="ID курьера" Grid.Column="2" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <TextBox x:Name="OrderIDDO" materialDesign:HintAssist.Hint="ID заказа" Grid.Column="3" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+            </Grid>
+            <Grid Grid.Row="0" Visibility="Collapsed" x:Name="GridForOrderedProducts">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="TovarOPCMBX" VerticalAlignment="Bottom" materialDesign:HintAssist.Hint="Товар" Grid.Column="0" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" SelectionChanged="TovarOPCMBX_SelectionChanged"></ComboBox>
+                <TextBox x:Name="IDUserOP" materialDesign:HintAssist.Hint="ID пользователя" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <TextBox x:Name="QuantityOP" materialDesign:HintAssist.Hint="Кол-во" Grid.Column="2" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" PreviewTextInput="TotalPrice_PreviewTextInput" TextChanged="TotalPrice_TextChanged"></TextBox>
             </Grid>
             <Grid Grid.Row="0" Visibility="Collapsed" x:Name="GridForOrders">
                 <Grid.ColumnDefinitions>
@@ -61,11 +70,15 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="PaymentMethodCMBX" VerticalAlignment="Bottom" materialDesign:HintAssist.Hint="Способ оплаты" Grid.Column="0" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></ComboBox>
+                <ComboBox x:Name="PaymentMethodCMBX" VerticalAlignment="Bottom" materialDesign:HintAssist.Hint="Способ оплаты" Grid.Column="5" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" SelectionChanged="PaymentMethodCMBX_SelectionChanged"></ComboBox>
                 <TextBox x:Name="PaymentDetailsTBX" materialDesign:HintAssist.Hint="Детали оплаты" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
                 <TextBox x:Name="DeliveryAddressTBX" materialDesign:HintAssist.Hint="Адресс доставки" Grid.Column="2" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
-                <TextBox x:Name="OrderStatusTBX" materialDesign:HintAssist.Hint="Статус заказа" Grid.Column="3" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <ComboBox x:Name="OrderStatusTBX" VerticalAlignment="Bottom" materialDesign:HintAssist.Hint="Статус заказа" Grid.Column="3" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" SelectionChanged="OrderStatusTBX_SelectionChanged"></ComboBox>
+                <TextBox x:Name="UserIDTBX" materialDesign:HintAssist.Hint="ID пользователя" Grid.Column="4" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <TextBox x:Name="TotalPrice" materialDesign:HintAssist.Hint="Общая цена" Grid.Column="0" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" PreviewTextInput="TotalPrice_PreviewTextInput" TextChanged="TotalPrice_TextChanged"></TextBox>
             </Grid>
             <Grid Grid.Row="1" x:Name="GridWithButtons" Visibility="Visible">
                 <Grid.ColumnDefinitions>
@@ -74,10 +87,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="InsertButton" Grid.Column="0" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White">Добавить</Button>
-                <Button x:Name="UpdateButton" Grid.Column="1" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White">Изменить</Button>
+                <Button x:Name="InsertButton" Grid.Column="0" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White" Click="InsertButton_Click">Добавить</Button>
+                <Button x:Name="UpdateButton" Grid.Column="1" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White" Click="UpdateButton_Click">Изменить</Button>
                 <Button x:Name="ClearButton" Grid.Column="2" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White">Очистить</Button>
-                <Button x:Name="DeleteButton" Grid.Column="3" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White">Удалить</Button>
+                <Button x:Name="DeleteButton" Grid.Column="3" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White" Click="DeleteButton_Click">Удалить</Button>
             </Grid>
             <Grid Grid.Row="1" x:Name="GridWithButtonForChangeStatus" Visibility="Collapsed">
                 <Grid.ColumnDefinitions>
@@ -86,8 +99,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="2" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White">Подтвердить</Button>
-                <Button Grid.Column="3" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White">Отменить</Button>
+                <Button x:Name="ConfirmButton" Grid.Column="2" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White" Click="ConfirmButton_Click">Подтвердить</Button>
+                <Button x:Name="CancelOrder" Grid.Column="3" Margin="10, 0, 10, 10" Background="#f21827" BorderBrush="#f21827" Foreground="White" Click="CancelOrder_Click">Отменить</Button>
             </Grid>
         </Grid>
     </Grid>

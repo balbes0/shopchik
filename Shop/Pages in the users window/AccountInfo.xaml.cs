@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +24,7 @@ namespace Shop.Pages_in_the_users_window
         int ID_User_ai;
         UsersTableAdapter _usersTableAdapter = new UsersTableAdapter();
         HistoryOrdersTableAdapter _historyOrdersTableAdapter = new HistoryOrdersTableAdapter();
+        
         public AccountInfo(int ID_User)
         {
             ID_User_ai = ID_User;
@@ -81,8 +83,28 @@ namespace Shop.Pages_in_the_users_window
 
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
-            _usersTableAdapter.UpdateQueryUserInfo(UserName.Text, UserSurname.Text, UserEmail.Text, UserPhoneNumber.Text, ID_User_ai);
-            MessageBox.Show("Информация и пользователе изменена");
+            if (UserName.Text != "" && UserSurname.Text != "" && UserEmail.Text != "" && UserPhoneNumber.Text != "")
+            {
+                string email = UserEmail.Text;
+                string phonenumber = UserPhoneNumber.Text;
+                string patternforemail = @"^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$";
+                string patternforphonenumber = @"^((\+7|7|8)+([0-9]){10})$";
+                bool isValidEmail = Regex.IsMatch(email, patternforemail, RegexOptions.IgnoreCase);
+                bool isValidPhoneNumber = Regex.IsMatch(phonenumber, patternforphonenumber, RegexOptions.IgnoreCase);
+                if (isValidEmail && isValidPhoneNumber && UserName.Text.Length > 2 && UserSurname.Text.Length > 2)
+                {
+                    _usersTableAdapter.UpdateQueryUserInfo(UserName.Text, UserSurname.Text, UserEmail.Text, UserPhoneNumber.Text, ID_User_ai);
+                    MessageBox.Show("Информация и пользователе изменена");
+                }
+                else
+                {
+                    MessageBox.Show("Некорректно введены данные");
+                }
+            }
+            else if (UserName.Text == "" || UserSurname.Text == "" || UserEmail.Text == "" || UserPhoneNumber.Text == "")
+            {
+                MessageBox.Show("Некорректно введены данные");
+            }
         }
 
         private void SaveNewPassword_Click(object sender, RoutedEventArgs e)
@@ -98,9 +120,16 @@ namespace Shop.Pages_in_the_users_window
                     {
                         if (NewPassword.Password == ConfirmPassword.Password)
                         {
-                            _usersTableAdapter.UpdateQueryChangePassword(newpassword, ID_User_ai);
-                            MessageBox.Show("Пароль успешно изменен");
-                            break;
+                            if (NewPassword.Password.Length >= 8)
+                            {
+                                _usersTableAdapter.UpdateQueryChangePassword(newpassword, ID_User_ai);
+                                MessageBox.Show("Пароль успешно изменен");
+                                break;
+                            }
+                            else if (NewPassword.Password.Length < 8)
+                            {
+                                MessageBox.Show("Пароль слишком короткий");
+                            }
                         }
                         else
                         {
@@ -129,6 +158,21 @@ namespace Shop.Pages_in_the_users_window
                 }
                 return builder.ToString();
             }
+        }
+
+        private void UserName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsLetter(e.Text, 0)) e.Handled = true;
+        }
+
+        private void UserSurname_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsLetter(e.Text, 0)) e.Handled = true;
+        }
+
+        private void UserPhoneNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0) || UserPhoneNumber.Text.Length > 10) e.Handled = true;
         }
     }
 }

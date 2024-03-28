@@ -92,7 +92,7 @@ namespace Shop
             }
             else if (RegistrationNameTextBox.Text.Length < 2 || RegistrationSurnameTextBox.Text.Length < 2)
             {
-                MessageBox.Show("Слишком короткое имя или фамилие");
+                MessageBox.Show("Слишком короткое имя или фамилия");
             }
             else if (PasswordTextBox.Password.Length < 8)
             {

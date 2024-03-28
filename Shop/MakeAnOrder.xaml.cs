@@ -18,6 +18,7 @@ namespace Shop
 {
     public partial class MakeAnOrder : Window
     {
+        ProductsTableAdapter _productsTableAdapter = new ProductsTableAdapter();
         OrdersTableAdapter _ordersTableAdapter = new OrdersTableAdapter();
         Ordered_productsTableAdapter _ordered_ProductsTableAdapter = new Ordered_productsTableAdapter();
         ShoppingBasketTableAdapter _shoppingBasketTableAdapter = new ShoppingBasketTableAdapter();
@@ -54,16 +55,16 @@ namespace Shop
                 BankCard.Visibility= Visibility.Visible;
             }
         }
-
-        private void Checkout_Click(object sender, RoutedEventArgs e)
+        private void Zakaz()
         {
+            var allproducts = _productsTableAdapter.GetData().Rows;
             var allshopingbaskets = _shoppingBasketTableAdapter.GetData().Rows;
             var allorders = _ordersTableAdapter.GetData().Rows;
             for (int k = 0; k < allorders.Count; k++)
             {
                 if (k == allorders.Count - 1)
                 {
-                    valuelastrow = Convert.ToInt32(allorders[k][0]);
+                    valuelastrow = Convert.ToInt32(allorders[k][0]);   //Для того чтобы добавить в заказ, заказанные товары
                 }
             }
             for (int i = 0; i < allshopingbaskets.Count; i++)
@@ -72,7 +73,15 @@ namespace Shop
                 {
                     int ID_Product = Convert.ToInt32(allshopingbaskets[i][1]);
                     int Quantity = Convert.ToInt32(allshopingbaskets[i][2]);
-                    _ordered_ProductsTableAdapter.InsertQueryOrderedProducts(ID_User_mao, ID_Product, Quantity);
+                    _ordered_ProductsTableAdapter.InsertQueryOrderedProducts(ID_User_mao, ID_Product, Quantity); //добавление корзины в заказанные товары
+                    for (int z = 0; z < allproducts.Count; z++)
+                    {
+                        if (Convert.ToInt32(allproducts[z][0]) == ID_Product)
+                        {
+                            int newquantity = Convert.ToInt32(allproducts[z][8]) - Quantity;
+                            _productsTableAdapter.UpdateQueryProductQuantity(newquantity, ID_Product);
+                        }
+                    }
                 }
             }
             for (int j = 0; j < allshopingbaskets.Count; j++)
@@ -80,7 +89,7 @@ namespace Shop
                 if (Convert.ToInt32(allshopingbaskets[j][0]) == ID_User_mao)
                 {
                     int ID_Product = Convert.ToInt32(allshopingbaskets[j][1]);
-                    _shoppingBasketTableAdapter.DeleteQueryShoppingBusket(ID_User_mao, ID_Product);
+                    _shoppingBasketTableAdapter.DeleteQueryShoppingBusket(ID_User_mao, ID_Product); //очистка корзины
                 }
             }
             string currentDateTime = DateTime.Now.ToString();
@@ -90,12 +99,44 @@ namespace Shop
             {
                 if (k == allorders.Count - 1)
                 {
-                    valuelastrow = Convert.ToInt32(allorders[k][0]);
+                    valuelastrow = Convert.ToInt32(allorders[k][0]);  //добавление заказанных товаров в заказ
                 }
             }
             _order_ReceiptsTableAdapter.InsertQueryOrder_receipts(valuelastrow);
             MessageBox.Show("Заказ был оформлен");
             this.Close();
+        }
+        private void Checkout_Click(object sender, RoutedEventArgs e)
+        {
+            if (AddressDelivery.Text != "" && (carta.IsChecked == true || nalichka.IsChecked == true))
+            {
+                if (carta.IsChecked == true && CardNumber.Text != "" && CVV.Text != "" && CardNumber.Text.Length == 16 && CVV.Text.Length == 3)
+                {
+                    Zakaz();
+                }
+                else if (carta.IsChecked == true && (CardNumber.Text == "" || CVV.Text == "" || CardNumber.Text.Length < 16 || CVV.Text.Length < 3))
+                {
+                    MessageBox.Show("Не все данные карты заполнены");
+                }
+                if (nalichka.IsChecked == true)
+                {
+                    Zakaz();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Не все обязательные заполнены");
+            }
+        }
+
+        private void CardNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0) || CardNumber.Text.Length > 15) e.Handled = true;
+        }
+
+        private void CVV_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0) || CVV.Text.Length > 2) e.Handled = true;
         }
     }
 }

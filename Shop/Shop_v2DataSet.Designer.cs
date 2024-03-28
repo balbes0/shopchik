@@ -8375,9 +8375,9 @@ namespace Shop {
             
             private global::System.Data.DataColumn _columnФамилие_покупателя_;
             
-            private global::System.Data.DataColumn columnProduct_name;
-            
             private global::System.Data.DataColumn _columnКол_во_купленного;
+            
+            private global::System.Data.DataColumn columnНазвание_продукта;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -8446,17 +8446,17 @@ namespace Shop {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Product_nameColumn {
+            public global::System.Data.DataColumn _Кол_во_купленногоColumn {
                 get {
-                    return this.columnProduct_name;
+                    return this._columnКол_во_купленного;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn _Кол_во_купленногоColumn {
+            public global::System.Data.DataColumn Название_продуктаColumn {
                 get {
-                    return this._columnКол_во_купленного;
+                    return this.columnНазвание_продукта;
                 }
             }
             
@@ -8497,15 +8497,15 @@ namespace Shop {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderedProductsViewRow AddOrderedProductsViewRow(int ID_покупателя, string Имя_покупателя, string _Фамилие_покупателя_, string Product_name, int _Кол_во_купленного) {
+            public OrderedProductsViewRow AddOrderedProductsViewRow(int ID_покупателя, string Имя_покупателя, string _Фамилие_покупателя_, int _Кол_во_купленного, string Название_продукта) {
                 OrderedProductsViewRow rowOrderedProductsViewRow = ((OrderedProductsViewRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ID_покупателя,
                         Имя_покупателя,
                         _Фамилие_покупателя_,
-                        Product_name,
-                        _Кол_во_купленного};
+                        _Кол_во_купленного,
+                        Название_продукта};
                 rowOrderedProductsViewRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOrderedProductsViewRow);
                 return rowOrderedProductsViewRow;
@@ -8539,8 +8539,8 @@ namespace Shop {
                 this.columnID_покупателя = base.Columns["ID покупателя"];
                 this.columnИмя_покупателя = base.Columns["Имя покупателя"];
                 this._columnФамилие_покупателя_ = base.Columns["Фамилие покупателя:"];
-                this.columnProduct_name = base.Columns["Product_name"];
                 this._columnКол_во_купленного = base.Columns["Кол-во купленного"];
+                this.columnНазвание_продукта = base.Columns["Название продукта"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8558,12 +8558,12 @@ namespace Shop {
                 this._columnФамилие_покупателя_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnФамилие_покупателя_");
                 this._columnФамилие_покупателя_.ExtendedProperties.Add("Generator_UserColumnName", "Фамилие покупателя:");
                 base.Columns.Add(this._columnФамилие_покупателя_);
-                this.columnProduct_name = new global::System.Data.DataColumn("Product_name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProduct_name);
                 this._columnКол_во_купленного = new global::System.Data.DataColumn("Кол-во купленного", typeof(int), null, global::System.Data.MappingType.Element);
                 this._columnКол_во_купленного.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnКол_во_купленного");
                 this._columnКол_во_купленного.ExtendedProperties.Add("Generator_UserColumnName", "Кол-во купленного");
                 base.Columns.Add(this._columnКол_во_купленного);
+                this.columnНазвание_продукта = new global::System.Data.DataColumn("Название продукта", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnНазвание_продукта);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this._columnID_}, true));
                 this._columnID_.AutoIncrement = true;
@@ -8575,8 +8575,8 @@ namespace Shop {
                 this.columnИмя_покупателя.AllowDBNull = false;
                 this.columnИмя_покупателя.MaxLength = 30;
                 this._columnФамилие_покупателя_.MaxLength = 30;
-                this.columnProduct_name.AllowDBNull = false;
-                this.columnProduct_name.MaxLength = 100;
+                this.columnНазвание_продукта.AllowDBNull = false;
+                this.columnНазвание_продукта.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8726,6 +8726,8 @@ namespace Shop {
             
             private global::System.Data.DataColumn _columnСтатус_заказа_;
             
+            private global::System.Data.DataColumn _columnДетали_;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public OrderViewxDataTable() {
@@ -8825,6 +8827,14 @@ namespace Shop {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn _Детали_Column {
+                get {
+                    return this._columnДетали_;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -8860,7 +8870,7 @@ namespace Shop {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderViewxRow AddOrderViewxRow(int _ID_заказчика_, string _Имя_, decimal _Общая_цена_, System.DateTime _Дата_, string _Способ_оплаты_, string _Адрес_доставки_, string _Статус_заказа_) {
+            public OrderViewxRow AddOrderViewxRow(int _ID_заказчика_, string _Имя_, decimal _Общая_цена_, System.DateTime _Дата_, string _Способ_оплаты_, string _Адрес_доставки_, string _Статус_заказа_, string _Детали_) {
                 OrderViewxRow rowOrderViewxRow = ((OrderViewxRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -8870,7 +8880,8 @@ namespace Shop {
                         _Дата_,
                         _Способ_оплаты_,
                         _Адрес_доставки_,
-                        _Статус_заказа_};
+                        _Статус_заказа_,
+                        _Детали_};
                 rowOrderViewxRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowOrderViewxRow);
                 return rowOrderViewxRow;
@@ -8908,6 +8919,7 @@ namespace Shop {
                 this._columnСпособ_оплаты_ = base.Columns["Способ оплаты:"];
                 this._columnАдрес_доставки_ = base.Columns["Адрес доставки:"];
                 this._columnСтатус_заказа_ = base.Columns["Статус заказа:"];
+                this._columnДетали_ = base.Columns["Детали:"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8945,6 +8957,10 @@ namespace Shop {
                 this._columnСтатус_заказа_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnСтатус_заказа_");
                 this._columnСтатус_заказа_.ExtendedProperties.Add("Generator_UserColumnName", "Статус заказа:");
                 base.Columns.Add(this._columnСтатус_заказа_);
+                this._columnДетали_ = new global::System.Data.DataColumn("Детали:", typeof(string), null, global::System.Data.MappingType.Element);
+                this._columnДетали_.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnДетали_");
+                this._columnДетали_.ExtendedProperties.Add("Generator_UserColumnName", "Детали:");
+                base.Columns.Add(this._columnДетали_);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this._columnID_заказа_}, true));
                 this._columnID_заказа_.AutoIncrement = true;
@@ -8962,6 +8978,8 @@ namespace Shop {
                 this._columnАдрес_доставки_.MaxLength = 255;
                 this._columnСтатус_заказа_.AllowDBNull = false;
                 this._columnСтатус_заказа_.MaxLength = 30;
+                this._columnДетали_.AllowDBNull = false;
+                this._columnДетали_.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11294,17 +11312,6 @@ namespace Shop {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Product_name {
-                get {
-                    return ((string)(this[this.tableOrderedProductsView.Product_nameColumn]));
-                }
-                set {
-                    this[this.tableOrderedProductsView.Product_nameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int _Кол_во_купленного {
                 get {
                     try {
@@ -11317,6 +11324,17 @@ namespace Shop {
                 }
                 set {
                     this[this.tableOrderedProductsView._Кол_во_купленногоColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Название_продукта {
+                get {
+                    return ((string)(this[this.tableOrderedProductsView.Название_продуктаColumn]));
+                }
+                set {
+                    this[this.tableOrderedProductsView.Название_продуктаColumn] = value;
                 }
             }
             
@@ -11466,6 +11484,17 @@ namespace Shop {
                 }
                 set {
                     this[this.tableOrderViewx._Статус_заказа_Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string _Детали_ {
+                get {
+                    return ((string)(this[this.tableOrderViewx._Детали_Column]));
+                }
+                set {
+                    this[this.tableOrderViewx._Детали_Column] = value;
                 }
             }
             
@@ -14769,7 +14798,7 @@ SELECT ID_Order, User_ID, Order_date, Order_total_price, Payment_method_ID, Paym
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID_Order, User_ID, Order_date, Order_total_price, Payment_method_ID, Payme" +
@@ -14794,12 +14823,26 @@ VALUES        (@User_ID,@Order_total_price,@Payment_method_ID,@Payment_method_de
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Order_status_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Order_status_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "UPDATE       Orders\r\nSET                Order_status_ID = @OrderStatusID\r\nWHERE  " +
-                "      (ID_Order = @IDOrder) AND (User_ID = @User_ID)";
+            this._commandCollection[3].CommandText = @"UPDATE Orders
+SET          User_ID = @User_ID, Order_total_price = @Order_total_price, Payment_method_ID = @Payment_method_ID, Payment_method_details = @Payment_method_details, DeliveryAddress = @DeliveryAddress, 
+                  Order_status_ID = @Order_status_ID
+WHERE  (ID_Order = @Original_ID_Order)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderStatusID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Order_status_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDOrder", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Order", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@User_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "User_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@User_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "User_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Order_total_price", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "Order_total_price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Payment_method_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Payment_method_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Payment_method_details", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Payment_method_details", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeliveryAddress", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "DeliveryAddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Order_status_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Order_status_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID_Order", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Order", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "UPDATE       Orders\r\nSET                Order_status_ID = @OrderStatusID\r\nWHERE  " +
+                "      (ID_Order = @IDOrder) AND (User_ID = @User_ID)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderStatusID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Order_status_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDOrder", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Order", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@User_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "User_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15162,8 +15205,58 @@ VALUES        (@User_ID,@Order_total_price,@Payment_method_ID,@Payment_method_de
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQueryOrderStatus(global::System.Nullable<int> OrderStatusID, int IDOrder, global::System.Nullable<int> User_ID) {
+        public virtual int UpdateQueryOrders(global::System.Nullable<int> User_ID, decimal Order_total_price, int Payment_method_ID, string Payment_method_details, string DeliveryAddress, global::System.Nullable<int> Order_status_ID, int Original_ID_Order) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            if ((User_ID.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(User_ID.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[1].Value = ((decimal)(Order_total_price));
+            command.Parameters[2].Value = ((int)(Payment_method_ID));
+            if ((Payment_method_details == null)) {
+                throw new global::System.ArgumentNullException("Payment_method_details");
+            }
+            else {
+                command.Parameters[3].Value = ((string)(Payment_method_details));
+            }
+            if ((DeliveryAddress == null)) {
+                throw new global::System.ArgumentNullException("DeliveryAddress");
+            }
+            else {
+                command.Parameters[4].Value = ((string)(DeliveryAddress));
+            }
+            if ((Order_status_ID.HasValue == true)) {
+                command.Parameters[5].Value = ((int)(Order_status_ID.Value));
+            }
+            else {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[6].Value = ((int)(Original_ID_Order));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateQueryOrderStatus(global::System.Nullable<int> OrderStatusID, int IDOrder, global::System.Nullable<int> User_ID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((OrderStatusID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(OrderStatusID.Value));
             }
@@ -16233,7 +16326,7 @@ SELECT ID_Product, Product_name, Product_description, Product_characteristics, B
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID_Product, Product_name, Product_description, Product_characteristics, Br" +
@@ -16275,6 +16368,13 @@ WHERE        (ID_Product = @IDProduct)";
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDCategory", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Category_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InStock", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Products_in_stock", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDProduct", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Product", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "UPDATE Products\r\nSET          Products_in_stock = @NewQuantity\r\nWHERE  (ID_Produc" +
+                "t = @IDProduct)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NewQuantity", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Products_in_stock", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IDProduct", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID_Product", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16733,6 +16833,36 @@ WHERE        (ID_Product = @IDProduct)";
                 command.Parameters[7].Value = global::System.DBNull.Value;
             }
             command.Parameters[8].Value = ((int)(IDProduct));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateQueryProductQuantity(global::System.Nullable<int> NewQuantity, int IDProduct) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            if ((NewQuantity.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(NewQuantity.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[1].Value = ((int)(IDProduct));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21031,8 +21161,8 @@ FROM            Order_receipts INNER JOIN
             tableMapping.ColumnMappings.Add("ID покупателя", "ID покупателя");
             tableMapping.ColumnMappings.Add("Имя покупателя", "Имя покупателя");
             tableMapping.ColumnMappings.Add("Фамилие покупателя:", "Фамилие покупателя:");
-            tableMapping.ColumnMappings.Add("Product_name", "Product_name");
             tableMapping.ColumnMappings.Add("Кол-во купленного", "Кол-во купленного");
+            tableMapping.ColumnMappings.Add("Название продукта", "Название продукта");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -21049,7 +21179,7 @@ FROM            Order_receipts INNER JOIN
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        Ordered_products.ID_Ordered_products AS 'ID:', Ordered_products.User_ID AS 'ID покупателя', Users.User_name AS 'Имя покупателя', Users.User_surname AS 'Фамилие покупателя:', Products.Product_name, 
+            this._commandCollection[0].CommandText = @"SELECT        Ordered_products.ID_Ordered_products AS 'ID:', Ordered_products.User_ID AS 'ID покупателя', Users.User_name AS 'Имя покупателя', Users.User_surname AS 'Фамилие покупателя:', Products.Product_name AS 'Название продукта', 
                          Ordered_products.QuantityOfOrderedProduct AS 'Кол-во купленного'
 FROM            Ordered_products INNER JOIN
                          Products ON Ordered_products.Product_ID = Products.ID_Product INNER JOIN
@@ -21198,6 +21328,7 @@ FROM            Ordered_products INNER JOIN
             tableMapping.ColumnMappings.Add("Способ оплаты:", "Способ оплаты:");
             tableMapping.ColumnMappings.Add("Адрес доставки:", "Адрес доставки:");
             tableMapping.ColumnMappings.Add("Статус заказа:", "Статус заказа:");
+            tableMapping.ColumnMappings.Add("Детали:", "Детали:");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -21215,7 +21346,7 @@ FROM            Ordered_products INNER JOIN
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT        Orders.ID_Order AS 'ID заказа:', Orders.User_ID AS 'ID заказчика:', Users.User_name AS 'Имя:', Orders.Order_total_price AS 'Общая цена:', Orders.Order_date AS 'Дата:', 
-                         Payment_methods.Payment_method_name AS 'Способ оплаты:', Orders.DeliveryAddress AS 'Адрес доставки:', Order_statuses.Status_name AS 'Статус заказа:'
+                         Payment_methods.Payment_method_name AS 'Способ оплаты:',Orders.Payment_method_details AS 'Детали:' ,Orders.DeliveryAddress AS 'Адрес доставки:', Order_statuses.Status_name AS 'Статус заказа:'
 FROM            Orders INNER JOIN
                          Users ON Orders.User_ID = Users.ID_User INNER JOIN
                          Payment_methods ON Orders.Payment_method_ID = Payment_methods.ID_Payment_method INNER JOIN

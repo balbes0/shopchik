@@ -214,8 +214,15 @@ namespace Shop.Pages_in_the_users_window
 
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
-            MakeAnOrder makeAnOrder = new MakeAnOrder(ID_User_sb, totalPrice);
-            makeAnOrder.Show();
+            if (totalPrice > 0)
+            {
+                MakeAnOrder makeAnOrder = new MakeAnOrder(ID_User_sb, totalPrice);
+                makeAnOrder.Show();
+            }
+            else if (totalPrice <= 0)
+            {
+                MessageBox.Show("Корзина пуста");
+            }
         }
     }
 }

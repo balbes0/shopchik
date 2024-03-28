@@ -39,32 +39,35 @@ namespace Shop.Pages_in_the_users_window
             var allShoppingBasket = _shoppingBasket.GetData().Rows;
             for (int i = 0; i < allProducts.Count; i++)
             {
-                int ID_Product = (int)allProducts[i][0];
-                foregroundcolor = "DarkGray";
-                IconKind = "CartPlus";
-                for (int j = 0; j < allUsers_favorites_products.Count; j++)
+                if (Convert.ToInt32(allProducts[i][8]) > 0)
                 {
-                    if (Convert.ToInt32(allUsers_favorites_products[j][0]) == ID_User_storepg && Convert.ToInt32(allUsers_favorites_products[j][1]) == ID_Product)
+                    int ID_Product = (int)allProducts[i][0];
+                    foregroundcolor = "DarkGray";
+                    IconKind = "CartPlus";
+                    for (int j = 0; j < allUsers_favorites_products.Count; j++)
                     {
-                        foregroundcolor = "Red";
+                        if (Convert.ToInt32(allUsers_favorites_products[j][0]) == ID_User_storepg && Convert.ToInt32(allUsers_favorites_products[j][1]) == ID_Product)
+                        {
+                            foregroundcolor = "Red";
+                        }
                     }
-                }
-                for (int k = 0; k < allShoppingBasket.Count; k++)
-                {
-                    if (Convert.ToInt32(allShoppingBasket[k][0]) == ID_User_storepg && Convert.ToInt32(allShoppingBasket[k][1]) == ID_Product)
+                    for (int k = 0; k < allShoppingBasket.Count; k++)
                     {
-                        IconKind = "CartMinus";
+                        if (Convert.ToInt32(allShoppingBasket[k][0]) == ID_User_storepg && Convert.ToInt32(allShoppingBasket[k][1]) == ID_Product)
+                        {
+                            IconKind = "CartMinus";
+                        }
                     }
+                    myDataCollection.Add(new MyDataModel
+                    {
+                        ForegroundColor = foregroundcolor,
+                        Kind = IconKind,
+                        ImageSource = allProducts[i][5].ToString(),
+                        Price = allProducts[i][6].ToString() + " ₽",
+                        Description = allProducts[i][1].ToString(),
+                        Details = allProducts[i][3].ToString()
+                    });
                 }
-                myDataCollection.Add(new MyDataModel
-                {
-                    ForegroundColor = foregroundcolor,
-                    Kind = IconKind,
-                    ImageSource = allProducts[i][5].ToString(),
-                    Price = allProducts[i][6].ToString() + " ₽",
-                    Description = allProducts[i][1].ToString(),
-                    Details = allProducts[i][3].ToString()
-                });
             }
         }
         public class MyDataModel

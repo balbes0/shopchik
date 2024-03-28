@@ -60,11 +60,6 @@ namespace Shop
                     auth = true;
                     int ID_User = (int)allLogins[i][0];
                     int ID_role_user = (int)allLogins[i][6];
-                    /*  Роли пользователей:
-                    Администратор ID 1
-                    Менеджер ID 2
-                    Курьер ID 3
-                    Покупатель / Клиент ID 4  */
                     switch (ID_role_user)
                     {
                         case 1:
@@ -77,9 +72,6 @@ namespace Shop
                             administratorWindow2.Show();
                             ((MainWindow)Application.Current.MainWindow).Close();
                             break;
-                        //case 3: 
-                        //Окно для курьера
-                        //break;
                         case 4:
                             Administrator__manager__courirer__defaultuser_windows.AdministratorWindow administratorWindow4 = new Administrator__manager__courirer__defaultuser_windows.AdministratorWindow(ID_User, ID_role_user);
                             administratorWindow4.Show();

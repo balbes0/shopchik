@@ -38,10 +38,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="UserNameTBX" materialDesign:HintAssist.Hint="Имя" Grid.Column="0" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
-                <TextBox x:Name="UserSurnameTBX" materialDesign:HintAssist.Hint="Фамилия" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <TextBox x:Name="UserNameTBX" materialDesign:HintAssist.Hint="Имя" Grid.Column="0" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" PreviewTextInput="UserNameTBX_PreviewTextInput"></TextBox>
+                <TextBox x:Name="UserSurnameTBX" materialDesign:HintAssist.Hint="Фамилия" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" PreviewTextInput="UserSurnameTBX_PreviewTextInput"></TextBox>
                 <TextBox x:Name="UserEmailTBX" materialDesign:HintAssist.Hint="Почта" Grid.Column="2" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
-                <TextBox Grid.Column="3" x:Name="UserPhoneNumberTBX" materialDesign:HintAssist.Hint="Номер телефона" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <TextBox Grid.Column="3" x:Name="UserPhoneNumberTBX" materialDesign:HintAssist.Hint="Номер телефона" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" PreviewTextInput="UserPhoneNumberTBX_PreviewTextInput"></TextBox>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>

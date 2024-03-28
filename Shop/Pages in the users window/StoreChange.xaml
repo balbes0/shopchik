@@ -28,7 +28,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="Product_nameTBX" materialDesign:HintAssist.Hint="Название товара" Grid.Column="0" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <TextBox x:Name="Product_nameTBX" materialDesign:HintAssist.Hint="Название товара" Grid.Column="0" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"/>
                 <TextBox x:Name="Product_descriptionTBX" materialDesign:HintAssist.Hint="Описание" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
                 <TextBox x:Name="Product_characteristics" materialDesign:HintAssist.Hint="Характеристики" Grid.Column="2" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
                 <ComboBox x:Name="Brand_IDCMBX" VerticalAlignment="Bottom" materialDesign:HintAssist.Hint="Бренд" Grid.Column="3" VerticalContentAlignment="Center" Margin="10, 0, 10, 10" ></ComboBox>
@@ -41,8 +41,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="Path_to_product_imageTBX" materialDesign:HintAssist.Hint="URL изображения" Grid.Column="0" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
-                <TextBox x:Name="Product_priceTBX" materialDesign:HintAssist.Hint="Цена" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
-                <TextBox x:Name="Products_in_stockTBX" materialDesign:HintAssist.Hint="Кол-во в наличии" Grid.Column="2" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10"></TextBox>
+                <TextBox x:Name="Product_priceTBX" materialDesign:HintAssist.Hint="Цена" Grid.Column="1" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" PreviewTextInput="Product_priceTBX_PreviewTextInput"></TextBox>
+                <TextBox x:Name="Products_in_stockTBX" materialDesign:HintAssist.Hint="Кол-во в наличии" Grid.Column="2" VerticalContentAlignment="Bottom" Margin="10, 0, 10, 10" PreviewTextInput="Products_in_stockTBX_PreviewTextInput"></TextBox>
                 <ComboBox x:Name="Category_IDCMBX" materialDesign:HintAssist.Hint="Категория" Grid.Column="3" VerticalAlignment="Bottom" Margin="10, 0, 10, 10" ></ComboBox>
             </Grid>
             <Grid Grid.Row="2">
