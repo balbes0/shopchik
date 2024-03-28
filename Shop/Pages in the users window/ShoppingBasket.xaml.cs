@@ -27,9 +27,7 @@ namespace Shop.Pages_in_the_users_window
         ShoppingBasketTableAdapter _shoppingBasket = new ShoppingBasketTableAdapter();
         Users_favorites_productsTableAdapter _favorites_ProductsTableAdapter = new Users_favorites_productsTableAdapter();
         private ObservableCollection<MyDataModel> myDataCollection = new ObservableCollection<MyDataModel>();
-        List<int> ID_Products = new List<int>();
-        List<int> QuantityOfProduct = new List<int>();
-        private void SetPage()
+        public void SetPage()
         {
             myDataCollection.Clear();
             myGrid.ItemsSource = myDataCollection;
@@ -45,8 +43,6 @@ namespace Shop.Pages_in_the_users_window
                         if (Convert.ToInt32(allShoppingBasket[i][1]) == Convert.ToInt32(allProducts[j][0]))
                         {
                             int ID_Product = (int)allProducts[j][0];
-                            ID_Products.Add(ID_Product);
-                            QuantityOfProduct.Add(Convert.ToInt32(allShoppingBasket[i][2]));
                             IconColor = "DarkGray";
                             for (int k = 0; k < allUsers_favorites_products.Count; k++)
                             {
@@ -218,7 +214,7 @@ namespace Shop.Pages_in_the_users_window
 
         private void Checkout_Click(object sender, RoutedEventArgs e)
         {
-            MakeAnOrder makeAnOrder = new MakeAnOrder(ID_User_sb, ID_Products, totalPrice, QuantityOfProduct);
+            MakeAnOrder makeAnOrder = new MakeAnOrder(ID_User_sb, totalPrice);
             makeAnOrder.Show();
         }
     }

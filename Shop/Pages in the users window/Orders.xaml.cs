@@ -45,7 +45,6 @@ namespace Shop.Pages_in_the_users_window
         {
             if (Ordersp.IsSelected)
             {
-                InsertButton.Visibility = Visibility.Hidden;
                 GridForOrderReceipts.Visibility = Visibility.Collapsed;
                 GridForDeliveredOrders.Visibility = Visibility.Collapsed;
                 GridForOrders.Visibility = Visibility.Visible;

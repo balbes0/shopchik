@@ -14783,11 +14783,10 @@ SELECT ID_Order, User_ID, Order_date, Order_total_price, Payment_method_ID, Paym
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = @"INSERT INTO Orders
-                         (User_ID, Order_date, Order_total_price, Payment_method_ID, Payment_method_details, DeliveryAddress, Order_status_ID)
-VALUES        (@User_ID,@Order_date,@Order_total_price,@Payment_method_ID,@Payment_method_details,@DeliveryAddress,@Order_status_ID)";
+                         (User_ID, Order_total_price, Payment_method_ID, Payment_method_details, DeliveryAddress, Order_status_ID)
+VALUES        (@User_ID,@Order_total_price,@Payment_method_ID,@Payment_method_details,@DeliveryAddress,@Order_status_ID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@User_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "User_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Order_date", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Order_date", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Order_total_price", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "Order_total_price", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Payment_method_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Payment_method_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Payment_method_details", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Payment_method_details", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -15114,7 +15113,7 @@ VALUES        (@User_ID,@Order_date,@Order_total_price,@Payment_method_ID,@Payme
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertQueryOrders(global::System.Nullable<int> User_ID, global::System.Nullable<global::System.DateTime> Order_date, decimal Order_total_price, int Payment_method_ID, string Payment_method_details, string DeliveryAddress, global::System.Nullable<int> Order_status_ID) {
+        public virtual int InsertQueryOrders(global::System.Nullable<int> User_ID, decimal Order_total_price, int Payment_method_ID, string Payment_method_details, string DeliveryAddress, global::System.Nullable<int> Order_status_ID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((User_ID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(User_ID.Value));
@@ -15122,31 +15121,25 @@ VALUES        (@User_ID,@Order_date,@Order_total_price,@Payment_method_ID,@Payme
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((Order_date.HasValue == true)) {
-                command.Parameters[1].Value = ((System.DateTime)(Order_date.Value));
-            }
-            else {
-                command.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            command.Parameters[2].Value = ((decimal)(Order_total_price));
-            command.Parameters[3].Value = ((int)(Payment_method_ID));
+            command.Parameters[1].Value = ((decimal)(Order_total_price));
+            command.Parameters[2].Value = ((int)(Payment_method_ID));
             if ((Payment_method_details == null)) {
                 throw new global::System.ArgumentNullException("Payment_method_details");
             }
             else {
-                command.Parameters[4].Value = ((string)(Payment_method_details));
+                command.Parameters[3].Value = ((string)(Payment_method_details));
             }
             if ((DeliveryAddress == null)) {
                 throw new global::System.ArgumentNullException("DeliveryAddress");
             }
             else {
-                command.Parameters[5].Value = ((string)(DeliveryAddress));
+                command.Parameters[4].Value = ((string)(DeliveryAddress));
             }
             if ((Order_status_ID.HasValue == true)) {
-                command.Parameters[6].Value = ((int)(Order_status_ID.Value));
+                command.Parameters[5].Value = ((int)(Order_status_ID.Value));
             }
             else {
-                command.Parameters[6].Value = global::System.DBNull.Value;
+                command.Parameters[5].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 

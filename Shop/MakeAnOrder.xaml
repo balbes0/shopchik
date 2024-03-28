@@ -39,7 +39,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" x:Name="AddressForOrder" Grid.Column="1" Grid.ColumnSpan="2" MaxHeight="70" Margin="10" materialDesign:HintAssist.Hint="Адрес доставки" VerticalContentAlignment="Top" Padding="20"></TextBox>
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" x:Name="AddressDelivery" Grid.Column="1" Grid.ColumnSpan="2" MaxHeight="70" Margin="10" materialDesign:HintAssist.Hint="Адрес доставки" VerticalContentAlignment="Top" Padding="20"></TextBox>
         </Grid>
         <Grid Grid.Row="3" x:Name="BankCard" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
